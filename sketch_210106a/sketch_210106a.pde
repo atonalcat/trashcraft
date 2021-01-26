@@ -1,6 +1,7 @@
 import java.awt.Robot;
 color black = #000000;
 color white = #FFFFFF;
+color dullBlue = #7092BE;
 float eyex, eyey, eyez; //camerapos
 float focusx, focusy, focusz;
 float upx, upy, upz;
@@ -8,8 +9,13 @@ boolean wkey, akey, skey, dkey, spacekey, shiftkey;
 float leftRightAngle, upDownAngle;
 int gridSize;
 PImage map;
+PImage mossyStone;
+PImage oakPlanks;
 Robot rbt;
 void setup() {
+  mossyStone = loadImage("Mossy_Stone_Bricks.png");
+  oakPlanks = loadImage("Oak_Planks.png");
+  textureMode(NORMAL);
   try {
     rbt = new Robot();
   }
@@ -34,10 +40,12 @@ void setup() {
 }
 
 void draw() {
+  //lights();
+  pointLight(255,255,255,eyex,eyey,eyez);
   background(0);
   camera(eyex, eyey, eyez, focusx, focusy, focusz, upx, upy, upz);
-  drawFloor(-2000, 2000, height, 100);
-  drawFloor(-2000, 2000, 0, 100);
+  drawFloor(-2000, 2000, height+200, 100);
+  drawFloor(-2000, 2000, height-gridSize*5, 100);
   move();
   drawMap();
 }
@@ -90,24 +98,28 @@ void drawFloor(int start, int end, int level, int gap) {
   strokeWeight(3);
   int x = start;
   int z = start;
-  while (x<end) {
-    line(x, level, start, x, level, end);
-    line(start, height, z, end, height, z);
+  while (z<end) {
+    texturedCube(x, level, z, oakPlanks, gap);
     x=x+gap;
-    z=z+gap;
+    if (x>=end) {
+      x = start;
+      z=z+gap;
+    }
   }
 }
 void drawMap() {
   for (int x = 0; x < map.width; x++) {
     for (int y = 0; y < map.height; y++) {
       color c = map.get(x, y);
-      if (c != white) {
-        pushMatrix();
-        fill(c);
-        stroke(100);
-        translate(x*gridSize-2000, height/2, y*gridSize-2000);
-        box(gridSize, height, gridSize);
-        popMatrix();
+      if (c == dullBlue) {
+        texturedCube(x*gridSize-2000, height, y*gridSize-2000, mossyStone, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*2, y*gridSize-2000, mossyStone, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*3, y*gridSize-2000, mossyStone, gridSize);
+      }
+      if (c == black) {
+        texturedCube(x*gridSize-2000, height, y*gridSize-2000, oakPlanks, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*2, y*gridSize-2000, oakPlanks, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize*3, y*gridSize-2000, oakPlanks, gridSize);
       }
     }
   }
