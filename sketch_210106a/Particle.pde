@@ -16,8 +16,8 @@ class Particle extends GameObject {
   }
 
   void act() {
-    if (loc.y >= height) {
-      loc.y = height;
+    if (loc.y >= height+200) {
+      loc.y = height+200;
     } else if (loc.y <= height-gridSize*3) {
       loc.y = height-gridSize*3;
     } else {
@@ -33,6 +33,5 @@ class Particle extends GameObject {
    stroke(100);
    box(size);
    popMatrix();
-   lives--;
   }
 }

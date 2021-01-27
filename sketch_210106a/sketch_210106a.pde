@@ -59,7 +59,7 @@ void draw() {
    obj.act();
    obj.show();
    if(obj.lives == 0){
-    objects.remove(1); 
+    objects.remove(i); 
    }else{
     i++; 
    }
