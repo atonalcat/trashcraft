@@ -13,18 +13,22 @@ PImage mossyStone;
 PImage oakPlanks;
 Robot rbt;
 ArrayList<GameObject> objects;
+PGraphics world;
+PGraphics HUD;
 void setup() {
+  world = createGraphics(width, height, P3D);
+  HUD = createGraphics(width, height, P2D);
   objects = new ArrayList<GameObject>(); 
   mossyStone = loadImage("Mossy_Stone_Bricks.png");
   oakPlanks = loadImage("Oak_Planks.png");
-  textureMode(NORMAL);
+  
   try {
     rbt = new Robot();
   }
   catch(Exception e) {
     e.printStackTrace();
   }
-  size(displayWidth, displayHeight, P3D);
+  size(displayWidth, displayHeight, P2D);
   eyex = width/2;
   eyey = height/2;
   eyez = height/2;
@@ -44,10 +48,12 @@ void setup() {
 }
 
 void draw() {
+  world.beginDraw();
+  world.textureMode(NORMAL);
   //lights();
-  pointLight(255, 255, 255, eyex, eyey, eyez);
-  background(0);
-  camera(eyex, eyey, eyez, focusx, focusy, focusz, upx, upy, upz);
+  world.pointLight(255, 255, 255, eyex, eyey, eyez);
+  world.background(0);
+  world.camera(eyex, eyey, eyez, focusx, focusy, focusz, upx, upy, upz);
   drawFloor(-2000, 2000, height+200, 100);
   drawFloor(-2000, 2000, height-gridSize*5, 100);
   move();
@@ -64,7 +70,10 @@ void draw() {
     i++; 
    }
   }
- 
+ world.endDraw();
+ image(world,0,0);
+ line(width/2-20, height/2, width/2+20, height/2); 
+ line(width/2, height/2-20, width/2, height/2+20); 
 }
 
 void Robot() {
