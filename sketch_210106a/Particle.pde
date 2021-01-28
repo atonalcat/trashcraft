@@ -7,9 +7,9 @@ class Particle extends GameObject {
     lives = 255;
     loc = newloc.copy();
     speed = 50;
-    float vx = random(0, 3.14);
-    float vy = random(0, 3.14);
-    float vz = random(0, 3.14);
+    float vx = random(-5, 5);
+    float vy = random(-5, 5);
+    float vz = random(-5, 5);
     vel = new PVector(vx, vy, vz);
     vel.setMag(speed);
     gravity = new PVector(0, 5, 0);

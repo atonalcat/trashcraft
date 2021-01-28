@@ -21,7 +21,7 @@ void setup() {
   objects = new ArrayList<GameObject>(); 
   mossyStone = loadImage("Mossy_Stone_Bricks.png");
   oakPlanks = loadImage("Oak_Planks.png");
-  
+
   try {
     rbt = new Robot();
   }
@@ -58,22 +58,30 @@ void draw() {
   drawFloor(-2000, 2000, height-gridSize*5, 100);
   move();
   drawMap();
-  
+
   int i=0;
-  while(i<objects.size()){
-   GameObject obj = objects.get(i);
-   obj.act();
-   obj.show();
-   if(obj.lives == 0){
-    objects.remove(i); 
-   }else{
-    i++; 
-   }
+  while (i<objects.size()) {
+    GameObject obj = objects.get(i);
+    obj.act();
+    obj.show();
+    if (obj.lives == 0) {
+      objects.remove(i);
+    } else {
+      i++;
+    }
   }
- world.endDraw();
- image(world,0,0);
- line(width/2-20, height/2, width/2+20, height/2); 
- line(width/2, height/2-20, width/2, height/2+20); 
+  world.endDraw();
+  image(world, 0, 0);
+  HUD.beginDraw();
+  HUD.clear();
+  HUD.stroke(white);
+  HUD.strokeWeight(5);
+  drawCrosshair();
+  drawMinimap();
+  HUD.line(width/2-20, height/2, width/2+20, height/2); 
+  HUD.line(width/2, height/2-20, width/2, height/2+20); 
+  HUD.endDraw();
+  image(HUD, 0, 0);
 }
 
 void Robot() {
