@@ -35,7 +35,7 @@ void setup() {
 
   focusx = width/2;
   focusy = height/2;
-  focusz = height/2 - 100;
+  focusz = height/2-100;
 
   upx = 0;
   upy = 1;
@@ -55,7 +55,7 @@ void draw() {
   world.background(0);
   world.camera(eyex, eyey, eyez, focusx, focusy, focusz, upx, upy, upz);
   drawFloor(-2000, 2000, height+200, 100);
-  drawFloor(-2000, 2000, height-gridSize*5, 100);
+  
   move();
   drawMap();
 

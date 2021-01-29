@@ -37,7 +37,13 @@ void move() {
   if (upDownAngle < -PI/2.1) {
     upDownAngle = -PI/2.1;
   }
-   if(rightclick) objects.add(new Bullet()); 
+  if (rightclick) objects.add(new Bullet());
+  
+  //world.pushMatrix();
+  //world.translate(eyex + cos(leftRightAngle)*200, eyey, eyez + sin(leftRightAngle)*200);
+  //world.fill(255);
+  //world.sphere(20);
+  //world.popMatrix();
 }
 
 boolean canMoveForward() {
@@ -45,19 +51,33 @@ boolean canMoveForward() {
   float leftx, lefty, leftz;
   float rightx, righty, rightz;
   int mapx, mapy;
+  int leftmapx, leftmapy;
+  int rightmapx, rightmapy;
   fwdx = eyex + cos(leftRightAngle)*200;
+  leftx = eyex + cos(leftRightAngle-radians(1/2))*200;
+  rightx = eyex + cos(leftRightAngle+radians(1/2))*200;
   fwdy = eyey;
   fwdz = eyez + sin(leftRightAngle)*200;
+  leftz = eyex + cos(leftRightAngle-radians(1/2))*200;
+  rightz = eyex + cos(leftRightAngle+radians(1/2))*200;
 
-  mapx=int(fwdx+2000)/gridSize;
+  
+
+  mapx = int(fwdx+2000)/gridSize;
   mapy = int(fwdz+2000)/gridSize;
-  if(map.get(mapx, mapy) == white){
-   return true; 
-  }else{
-   return false; 
+  
+  leftmapx=int(leftx+2000)/gridSize;
+  rightmapx=int(rightx+2000)/gridSize;
+  leftmapy=int(leftz+2000)/gridSize;
+  rightmapy=int(rightz+2000)/gridSize;
+  println(mapx, mapy);
+  if (map.get(mapx, mapy) == white) {
+    return true;
+  } else {
+    return false;
   }
 }
-boolean canMoveLeft(){
+boolean canMoveLeft() {
   float fwdx, fwdy, fwdz;
   float leftx, lefty, leftz;
   float rightx, righty, rightz;
@@ -68,14 +88,14 @@ boolean canMoveLeft(){
 
   mapx=int(leftx+2000)/gridSize;
   mapy = int(leftz+2000)/gridSize;
-  if(map.get(mapx, mapy) == white){
-   return true; 
-  }else{
-   return false; 
+  if (map.get(mapx, mapy) == white) {
+    return true;
+  } else {
+    return false;
   }
 }
-boolean canMoveRight(){
- float fwdx, fwdy, fwdz;
+boolean canMoveRight() {
+  float fwdx, fwdy, fwdz;
   float leftx, lefty, leftz;
   float rightx, righty, rightz;
   int mapx, mapy;
@@ -85,24 +105,24 @@ boolean canMoveRight(){
 
   mapx=int(rightx+2000)/gridSize;
   mapy = int(rightz+2000)/gridSize;
-  if(map.get(mapx, mapy) == white){
-   return true; 
-  }else{
-   return false; 
-  } 
+  if (map.get(mapx, mapy) == white) {
+    return true;
+  } else {
+    return false;
+  }
 }
-boolean canMoveBack(){
+boolean canMoveBack() {
   float backx, backy, backz;
-   int mapx, mapy;
+  int mapx, mapy;
   backx = eyex + cos(leftRightAngle)*-200;
   backy = eyey;
   backz = eyez + sin(leftRightAngle)*-200;
 
   mapx=int(backx+2000)/gridSize;
   mapy = int(backz+2000)/gridSize;
-  if(map.get(mapx, mapy) == white){
-   return true; 
-  }else{
-   return false; 
-  } 
+  if (map.get(mapx, mapy) == white) {
+    return true;
+  } else {
+    return false;
+  }
 }

@@ -20,12 +20,16 @@ void drawMap() {
     for (int y = 0; y < map.height; y++) {
       color c = map.get(x, y);
       if (c == dullBlue) {
+        texturedCube(x*gridSize-2000, height+gridSize, y*gridSize-2000, mossyStone, gridSize);
         texturedCube(x*gridSize-2000, height, y*gridSize-2000, mossyStone, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize, y*gridSize-2000, mossyStone, gridSize);
         texturedCube(x*gridSize-2000, height-gridSize*2, y*gridSize-2000, mossyStone, gridSize);
         texturedCube(x*gridSize-2000, height-gridSize*3, y*gridSize-2000, mossyStone, gridSize);
       }
       if (c == black) {
+        texturedCube(x*gridSize-2000, height+gridSize, y*gridSize-2000, oakPlanks, gridSize);
         texturedCube(x*gridSize-2000, height, y*gridSize-2000, oakPlanks, gridSize);
+        texturedCube(x*gridSize-2000, height-gridSize, y*gridSize-2000, oakPlanks, gridSize);
         texturedCube(x*gridSize-2000, height-gridSize*2, y*gridSize-2000, oakPlanks, gridSize);
         texturedCube(x*gridSize-2000, height-gridSize*3, y*gridSize-2000, oakPlanks, gridSize);
       }

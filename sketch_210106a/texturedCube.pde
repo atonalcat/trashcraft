@@ -1,7 +1,7 @@
 void texturedCube(float x, float y, float z, PImage texture, float size) {
   world.pushMatrix();
   world.translate(x, y, z);
-  world.scale(200);
+  world.scale(size);
 
 
   world.noStroke();
@@ -50,7 +50,7 @@ void texturedCube(float x, float y, float z, PImage texture, float size) {
 void texturedCube(float x, float y, float z, PImage top, PImage side, PImage bottom, float size) {
   world.pushMatrix();
   world.translate(x, y, z);
-  world.scale(200);
+  world.scale(size);
 
 
   world.noStroke();
