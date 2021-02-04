@@ -13,9 +13,13 @@ void drawMinimap() {
   HUD.fill(white);
   HUD.text("X: " + miniX, 50, 230);
   HUD.text("Y: " + miniY, 50, 260);
-
+  HUD.text("Score(10 to win): " + score, 50, 350);
   HUD.strokeWeight(1);
   HUD.stroke(255, 0, 0);
   HUD.fill(255, 0, 0);
   HUD.rect(miniX*4+50, miniY*4+50, 4, 4);
+  HUD.text("Lives: " + lives, 50, 300);
+  HUD.text("Press P to pause", 50, 400);
+  HUD.fill(0,100,200);
+  HUD.text("Press H for help", 50, 450);
 }

@@ -1,15 +1,15 @@
 class GameObject {
   PVector loc;
   float size;
-  float lives;
+  float objlives;
   GameObject() {
     loc = new PVector(0, 0, 0);
     size = 10;
-    lives = 1;
+    objlives = 1;
   }
 
   GameObject(float x, float y, float z, float s) {
-    lives = 1;
+    objlives = 1;
     loc = new PVector(x, y, z);
     size = s;
   }

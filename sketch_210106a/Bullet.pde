@@ -18,11 +18,15 @@ class Bullet extends GameObject {
     if (map.get(hitx, hity)==white) {
       loc.add(dir);
     } else {
-      lives=0;
+      objlives=0;
       for (int i =0; i<5; i++) {
         objects.add(new Particle(loc));
       }
     }
     
+  }
+  void show(){
+   texturedCube(loc.x, loc.y, loc.z, bullet, 25);
+   
   }
 }

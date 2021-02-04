@@ -4,7 +4,7 @@ class Particle extends GameObject {
   float speed;
   Particle(PVector newloc) {
     super();
-    lives = 255;
+    objlives = 255;
     loc = newloc.copy();
     speed = 50;
     float vx = random(-5, 5);
@@ -29,10 +29,10 @@ class Particle extends GameObject {
   void show(){
    world.pushMatrix();
    world.translate(loc.x, loc.y, loc.z);
-   world.fill(white, lives);
+   world.fill(gold, objlives);
    world.stroke(100);
    world.box(size);
    world.popMatrix();
-   lives--;
+   objlives--;
   }
 }
